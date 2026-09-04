@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORATOR — Искусство говорить</title>
+<meta name="description" content="Школа ораторского искусства. Научись говорить уверенно, убеждать и выступать перед аудиторией.">
+<style>
+:root{
+  --bg:#0b0b0f;--card:#14141b;--card2:#1b1b24;--text:#f7f7f7;--muted:#a7a7b3;
+  --accent:#d7ad5a;--accent2:#f0cf87;--line:rgba(255,255,255,.1);--ok:#72d59a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.container{width:min(1120px,92%);margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(11,11,15,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:2px;font-size:21px}.logo span{color:var(--accent)}
+nav{display:flex;gap:28px;color:#d5d5dc;font-size:14px}
+nav a:hover{color:var(--accent2)}
+.nav-btn,.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;padding:13px 19px;font-weight:800;cursor:pointer;transition:.2s}
+.nav-btn,.btn.primary{background:var(--accent);color:#111}.btn.primary:hover,.nav-btn:hover{transform:translateY(-2px);background:var(--accent2)}
+.btn.ghost{border:1px solid var(--line);background:transparent;color:white}.btn.ghost:hover{border-color:var(--accent);color:var(--accent2)}
+.hero{min-height:760px;padding:160px 0 90px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;right:-180px;top:80px;background:radial-gradient(circle,rgba(215,173,90,.22),transparent 68%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:65px;align-items:center;position:relative}
+.badge{display:inline-block;border:1px solid rgba(215,173,90,.35);color:var(--accent2);padding:7px 11px;border-radius:30px;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px}
+h1{font-size:clamp(44px,6vw,78px);line-height:.98;letter-spacing:-3px;margin-bottom:24px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:18px;color:var(--muted);max-width:620px;margin-bottom:30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{background:linear-gradient(145deg,#191921,#101015);border:1px solid var(--line);border-radius:26px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.35)}
+.speech{height:330px;border-radius:18px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 35%,rgba(215,173,90,.18),transparent 35%),#101016}
+.mic{font-size:90px;filter:drop-shadow(0 0 30px rgba(215,173,90,.3))}
+.quote{position:absolute;bottom:18px;left:20px;right:20px;text-align:center;color:#d9d9e0;font-size:14px}
+section{padding:95px 0}
+.section-head{max-width:700px;margin-bottom:42px}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:800;margin-bottom:10px}
+h2{font-size:clamp(32px,4vw,50px);line-height:1.05;margin-bottom:14px;letter-spacing:-1.5px}
+.section-head p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.card .icon{font-size:30px;margin-bottom:20px}.card h3{font-size:19px;margin-bottom:9px}.card p{color:var(--muted);font-size:14px}
+.program{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.step{display:flex;gap:18px;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:16px}.num{min-width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(215,173,90,.14);color:var(--accent2);font-weight:900}
+.price{background:linear-gradient(145deg,#1b1b23,#111117);border:1px solid rgba(215,173,90,.3);border-radius:24px;padding:35px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center}.price strong{font-size:38px}.price p{color:var(--muted)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review{background:var(--card);padding:25px;border:1px solid var(--line);border-radius:18px}.stars{color:var(--accent);letter-spacing:2px}.review p{margin:13px 0;color:#ddd;font-size:15px}.review b{font-size:13px;color:var(--muted)}
+.form-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;align-items:start}.contact-box{background:var(--card);padding:30px;border-radius:20px;border:1px solid var(--line)}.contact-box p{color:var(--muted);margin:10px 0 20px}
+form{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}.field label{display:block;font-size:12px;color:#bbb;margin-bottom:6px}
+input,textarea,select{width:100%;background:#0e0e13;border:1px solid var(--line);color:white;border-radius:10px;padding:13px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}textarea{min-height:120px;resize:vertical}
+form .btn{width:100%;margin-top:5px}.note{font-size:11px;color:#777;margin-top:10px;text-align:center}
+.faq{max-width:850px}.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:10px}.faq summary{cursor:pointer;font-weight:700}.faq p{color:var(--muted);padding-top:12px}
+footer{padding:35px 0;border-top:1px solid var(--line);color:#777;font-size:13px}.footer{display:flex;justify-content:space-between;gap:20px}
+.toast{position:fixed;right:18px;bottom:18px;background:#181820;border:1px solid rgba(114,213,154,.35);padding:15px 18px;border-radius:12px;display:none;z-index:50;box-shadow:0 15px 40px #0008}.toast.show{display:block}
+@media(max-width:800px){
+ nav{display:none}.nav-btn{padding:10px 13px}.hero{padding-top:125px;min-height:auto}.hero-grid,.form-wrap,.program{grid-template-columns:1fr}.hero-card{order:-1}.cards,.reviews{grid-template-columns:1fr}section{padding:70px 0}.row{grid-template-columns:1fr}h1{letter-spacing:-2px}.price{grid-template-columns:1fr}.footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="container nav">
+<a href="#" class="logo">OR<span>ATOR</span></a>
+<nav><a href="#about">О школе</a><a href="#program">Программа</a><a href="#reviews">Отзывы</a><a href="#faq">FAQ</a><a href="#contact">Записаться</a></nav>
+<a class="nav-btn" href="#contact">Записаться</a>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="container hero-grid">
+<div>
+<div class="badge">Школа ораторского искусства</div>
+<h1>Говори так,<br>чтобы тебя <em>слушали.</em></h1>
+<p>Научись уверенно выступать, грамотно выражать мысли и убеждать людей — без страха и зажатости.</p>
+<div class="actions"><a class="btn primary" href="#contact">Записаться на занятие</a><a class="btn ghost" href="#program">Посмотреть программу</a></div>
+</div>
+<div class="hero-card"><div class="speech"><div class="mic">🎙️</div><div class="quote">«Сильная речь начинается с уверенности в себе.»</div></div></div>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<div class="section-head"><div class="eyebrow">Что ты получишь</div><h2>Навыки, которые работают всю жизнь</h2><p>Ораторское искусство помогает не только на сцене. Оно меняет то, как ты общаешься, учишься, работаешь и презентуешь себя.</p></div>
+<div class="cards">
+<div class="card"><div class="icon">🎤</div><h3>Уверенная речь</h3><p>Уберём слова-паразиты, зажатость и неуверенную подачу. Ты научишься говорить чётко и убедительно.</p></div>
+<div class="card"><div class="icon">🧠</div><h3>Структура мыслей</h3><p>Научишься быстро формулировать мысли и строить речь так, чтобы слушателю было легко тебя понимать.</p></div>
+<div class="card"><div class="icon">🔥</div><h3>Сильная подача</h3><p>Голос, интонация, паузы, жесты и контакт с аудиторией — всё, что делает выступление запоминающимся.</p></div>
+</div>
+</div>
+</section>
+
+<section id="program">
+<div class="container">
+<div class="section-head"><div class="eyebrow">Программа</div><h2>От волнения к уверенности</h2></div>
+<div class="program">
+<div class="step"><div class="num">01</div><div><h3>Побеждаем страх</h3><p>Практика выступлений и техники контроля волнения.</p></div></div>
+<div class="step"><div class="num">02</div><div><h3>Ставим голос</h3><p>Дыхание, громкость, дикция, темп и интонация.</p></div></div>
+<div class="step"><div class="num">03</div><div><h3>Учимся убеждать</h3><p>Аргументы, структура речи и работа с возражениями.</p></div></div>
+<div class="step"><div class="num">04</div><div><h3>Выступаем</h3><p>Реальные выступления и персональная обратная связь.</p></div></div>
+</div>
+<div class="price" style="margin-top:20px"><div><strong>Первое занятие</strong><p>Знакомство + диагностика речи + практическое упражнение</p></div><a href="#contact" class="btn primary">Хочу попробовать</a></div>
+</div>
+</section>
+
+<section id="reviews">
+<div class="container">
+<div class="section-head"><div class="eyebrow">Отзывы</div><h2>Что говорят ученики</h2></div>
+<div class="reviews" id="reviewList">
+<div class="review"><div class="stars">★★★★★</div><p>«Раньше боялся отвечать у доски. Уже после нескольких занятий стал намного спокойнее и увереннее.»</p><b>Александр</b></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Очень понравилась практика. Здесь не просто рассказывают теорию — ты сразу начинаешь говорить.»</p><b>Мадина</b></div>
+<div class="review"><div class="stars">★★★★★</div><p>«Наконец научился нормально презентовать свои идеи. Навык реально пригодился в учёбе и общении.»</p><b>Илья</b></div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="section-head"><div class="eyebrow">Связаться</div><h2>Запишись или задай вопрос</h2><p>Оставь заявку — мы свяжемся с тобой и ответим на все вопросы.</p></div>
+<div class="form-wrap">
+<div class="contact-box"><h3>Есть вопрос?</h3><p>Напиши его в форме. Также можно оставить заявку на занятие или предложить свою дату.</p><p>⏱️ Ответ обычно в течение рабочего дня</p>
+<p>📞 <a href="tel:+79064508777" style="color:var(--accent2);font-weight:700">+7 906 450-87-77</a></p>
+<p>✈️ <a href="https://t.me/safiya_musaevna" target="_blank" rel="noopener" style="color:var(--accent2);font-weight:700">@safiya_musaevna</a></p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+<a class="btn primary" href="tel:+79064508777">📞 Позвонить</a>
+<a class="btn ghost" href="https://t.me/safiya_musaevna" target="_blank" rel="noopener">✈️ Telegram</a>
+</div></div>
+<form id="mainForm">
+<div class="row">
+<div class="field"><label>Имя</label><input id="name" required placeholder="Как тебя зовут?"></div>
+<div class="field"><label>Телефон / Telegram</label><input id="contactInput" required placeholder="+7 ... / @username"></div>
+</div>
+<div class="field"><label>Что тебя интересует?</label><select id="type"><option>Записаться на занятие</option><option>Задать вопрос</option><option>Индивидуальное обучение</option><option>Групповое обучение</option></select></div>
+<div class="field"><label>Сообщение</label><textarea id="message" required placeholder="Напиши свой вопрос или пожелания..."></textarea></div>
+<button class="btn primary" type="submit">Отправить заявку</button>
+<div class="note">Нажимая кнопку, ты соглашаешься на обработку данных для связи.</div>
+</form>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="section-head"><div class="eyebrow">Твой отзыв</div><h2>Поделись впечатлением</h2></div>
+<form id="reviewForm" style="max-width:800px">
+<div class="row"><div class="field"><label>Имя</label><input id="reviewName" required></div><div class="field"><label>Оценка</label><select id="rating"><option>★★★★★</option><option>★★★★</option><option>★★★</option></select></div></div>
+<div class="field"><label>Отзыв</label><textarea id="reviewText" required placeholder="Напиши, что тебе понравилось..."></textarea></div>
+<button class="btn primary" type="submit">Оставить отзыв</button>
+</form>
+</div>
+</section>
+
+<section id="faq">
+<div class="container faq">
+<div class="section-head"><div class="eyebrow">FAQ</div><h2>Частые вопросы</h2></div>
+<details><summary>Я очень стесняюсь. Мне подойдут занятия?</summary><p>Да. Занятия как раз построены так, чтобы постепенно убрать зажатость и страх выступлений.</p></details>
+<details><summary>Можно ли заниматься индивидуально?</summary><p>Да, в форме записи можно выбрать индивидуальное обучение.</p></details>
+<details><summary>Сколько длится обучение?</summary><p>Продолжительность зависит от твоей цели. После заявки можно подобрать подходящий формат.</p></details>
+<details><summary>Можно ли просто задать вопрос?</summary><p>Конечно. Выбери «Задать вопрос» и напиши его в форме.</p></details>
+</div>
+</section>
+</main>
+
+<footer><div class="container footer"><div>© 2026 ORATOR — Школа ораторского искусства</div><div>Говори уверенно. Действуй смело.</div></div></footer>
+<div class="toast" id="toast">✓ Заявка сохранена на этом устройстве</div>
+
+<script>
+const toast=document.getElementById('toast');
+function showToast(text){toast.textContent='✓ '+text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3500)}
+document.getElementById('mainForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const data={name:name.value,contact:contactInput.value,type:type.value,message:message.value,date:new Date().toLocaleString()};
+ const arr=JSON.parse(localStorage.getItem('orator_requests')||'[]');arr.push(data);localStorage.setItem('orator_requests',JSON.stringify(arr));
+ e.target.reset();showToast('Заявка сохранена на этом устройстве');
+});
+document.getElementById('reviewForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const review={name:reviewName.value,rating:rating.value,text:reviewText.value};
+ const arr=JSON.parse(localStorage.getItem('orator_reviews')||'[]');arr.push(review);localStorage.setItem('orator_reviews',JSON.stringify(arr));
+ const box=document.createElement('div');box.className='review';box.innerHTML='<div class="stars">'+review.rating+'</div><p>«'+review.text.replace(/</g,'&lt;')+'»</p><b>'+review.name.replace(/</g,'&lt;')+'</b>';
+ document.getElementById('reviewList').prepend(box);e.target.reset();showToast('Спасибо за отзыв!');
+});
+</script>
+</body>
+</html>
