@@ -171,12 +171,37 @@ footer{padding:35px 0;border-top:1px solid var(--line);color:#777;font-size:13px
 <script>
 const toast=document.getElementById('toast');
 function showToast(text){toast.textContent='✓ '+text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3500)}
-document.getElementById('mainForm').addEventListener('submit',e=>{
- e.preventDefault();
- const data={name:name.value,contact:contactInput.value,type:type.value,message:message.value,date:new Date().toLocaleString()};
- const arr=JSON.parse(localStorage.getItem('orator_requests')||'[]');arr.push(data);localStorage.setItem('orator_requests',JSON.stringify(arr));
- e.target.reset();showToast('Заявка сохранена на этом устройстве');
+document.getElementById('mainForm').addEventListener('submit', async e => {
+e.preventDefault();
+
+const data = {
+name: document.getElementById('name').value,
+contact: document.getElementById('contactInput').value,
+type: document.getElementById('type').value,
+message: document.getElementById('message').value,
+date: new Date().toLocaleString('ru-RU')
+};
+
+try {
+const response = await fetch('/api/send-telegram', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify(data)
 });
+
+if (!response.ok) {
+throw new Error('Ошибка отправки');
+}
+
+e.target.reset();
+showToast('Заявка отправлена!');
+} catch (error) {
+showToast('Не удалось отправить заявку');
+}
+});
+
 document.getElementById('reviewForm').addEventListener('submit',e=>{
  e.preventDefault();
  const review={name:reviewName.value,rating:rating.value,text:reviewText.value};
