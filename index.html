@@ -60,7 +60,62 @@ footer{padding:35px 0;border-top:1px solid var(--line);color:#777;font-size:13px
 @media(max-width:800px){
  nav{display:none}.nav-btn{padding:10px 13px}.hero{padding-top:125px;min-height:auto}.hero-grid,.form-wrap,.program{grid-template-columns:1fr}.hero-card{order:-1}.cards,.reviews{grid-template-columns:1fr}section{padding:70px 0}.row{grid-template-columns:1fr}h1{letter-spacing:-2px}.price{grid-template-columns:1fr}.footer{flex-direction:column}
 }
+.seo-block {
+padding: 90px 20px;
+background: #f5f2eb;
+text-align: center;
+}
+
+.seo-block .container {
+max-width: 900px;
+margin: 0 auto;
+}
+
+.seo-block h2 {
+font-size: 42px;
+line-height: 1.15;
+margin-bottom: 25px;
+color: #111;
+}
+
+.seo-block p {
+max-width: 760px;
+margin: 0 auto 18px;
+font-size: 18px;
+line-height: 1.7;
+color: #555;
+}
+
+.seo-button {
+display: inline-block;
+margin-top: 20px;
+padding: 15px 30px;
+background: #111;
+color: #fff;
+text-decoration: none;
+border-radius: 4px;
+font-weight: 600;
+}
+
+.seo-button:hover {
+opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+.seo-block {
+padding: 60px 18px;
+}
+
+.seo-block h2 {
+font-size: 30px;
+}
+
+.seo-block p {
+font-size: 16px;
+}
+}
 </style>
+<link rel="icon" type="image/png" href="orator-logo.png">
 </head>
 <body>
 <header>
@@ -212,5 +267,23 @@ document.getElementById('reviewForm').addEventListener('submit',e=>{
  document.getElementById('reviewList').prepend(box);e.target.reset();showToast('Спасибо за отзыв!');
 });
 </script>
+<section class="seo-block">
+<div class="container">
+<h2>Школа ораторского искусства в Избербаше</h2>
+<p>
+ORATOR — школа ораторского искусства, где ты научишься уверенно выступать,
+грамотно выражать мысли и убеждать аудиторию.
+</p>
+<p>
+На занятиях мы развиваем ораторское мастерство, дикцию, уверенную речь,
+навыки публичных выступлений и умение держаться перед аудиторией.
+</p>
+<p>
+Если ты ищешь курсы ораторского мастерства в Избербаше или хочешь
+научиться говорить уверенно и убедительно — присоединяйся к ORATOR.
+</p>
+<a href="#contact" class="seo-button">Записаться на занятие</a>
+</div>
+</section>
 </body>
 </html>
